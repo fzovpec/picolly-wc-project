@@ -1,0 +1,63 @@
+<?php
+add_action('init', 'register_post_types_first');
+function register_post_types_first(){
+    register_taxonomy('firstcat', array('first'), array(
+        'label'                 => 'Запись',
+        'labels'                => array(
+          'name'              => 'Запись',
+          'singular_name'     => 'Категория',
+          'search_items'      => 'Искать рубрики',
+          'all_items'         => 'Все рубрики',
+          'parent_item'       => 'Родит. рубрика',
+          'parent_item_colon' => 'Родит. рубрика:',
+          'edit_item'         => 'Редактировать рубрику',
+          'update_item'       => 'Обновить рубрику',
+          'add_new_item'      => 'Добавить рубрику',
+          'new_item_name'     => 'Заголовок',
+          'menu_name'         => 'Категории',
+        ),
+        'description'           => 'Категории',
+        'public'                => true,
+        'show_in_nav_menus'     => true,
+        'show_ui'               => true,
+        'show_tagcloud'         => false,
+        'hierarchical'          => true,
+        'rewrite'               => array( 'hierarchical' => true ),
+        'show_admin_column'     => true,
+      ) );
+    register_post_type('first', array(
+        'label'  => 'Объект',
+        'labels' => array(
+          'name'               => 'Запись на первый экран',
+          'singular_name'      => 'Катерогия на главной',
+          'add_new'            => 'Добавить новую',
+          'add_new_item'       => 'Введите имя (slug)',
+          'edit_item'          => 'Редактирование объекта',
+          'new_item'           => 'Новая категория',
+          'view_item'          => 'Посмотреть категорию',
+          'search_items'       => 'Найти категорию',
+          'not_found'          => 'Категории не найдено',
+          'not_found_in_trash' => 'В корзине объектов не найдено',
+          'parent_item_colon'  => '',
+          'menu_name'          => 'Запись на первый экран',
+        ),
+        'description'         => 'Категории на главной в первом экране',
+        'public'              => true,
+        'publicly_queryable'  => true,
+        'exclude_from_search' => false,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'show_in_admin_bar'   => true,
+        'menu_position'       => 22,
+        'menu_icon'           => 'dashicons-align-center',
+        'capability_type'   => 'post',
+        'map_meta_cap'      => true,
+        'hierarchical'        => false,
+        'supports'            => array('title', 'editor', 'thumbnail'),
+        'taxonomies'          => array('firstcat', 'localcat'),
+        'has_archive'         => true,
+        'rewrite'             => array('slug' => 'firstcategory', 'with_front' => false),
+        'query_var'           => true,
+      ) );
+}
+?>

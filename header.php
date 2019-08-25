@@ -25,10 +25,10 @@
                 <div class="col-md-5">
                     <div class="search__block">
                         <div class="search__line">
-                            <img src="img/<?php echo get_template_directory_uri() ?>/search_line.png" class="search__line">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/search_line.png" class="search__line">
                         </div>
                         <div class="search__arrow">
-                            <img src="img/<?php echo get_template_directory_uri() ?>/search_arrow.png" alt="">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/search_arrow.png" alt="">
                         </div>
                         <form class="search">
                             <input type="text" name="name" placeholder="Поиск">
