@@ -25,6 +25,6 @@
             </div>
         <?php endwhile; ?>
         </div>
-        <span><a href="factories.html">Посмотреть все</a></span>
+        <span><a href="<?php the_permalink() ?>">Посмотреть все</a></span>
     </div>
 </section>
