@@ -8,23 +8,28 @@
     <div class="categorical">
         <div class="row">
             <?php
-            $args = array(
-                'post_type' => 'factories',
-                'publish' => true,
-                'paged' => get_query_var('paged'),
-                'post_per_page' => 6
-            );
-            query_posts($args);
-            while( have_posts() ) : the_post();?>
+            $taxonomy = 'product_cat';
+            $product_categories = get_terms( $taxonomy, array(
+                'parent'     => 0,
+                'hide_empty' => false,
+            ) );
+            if( !empty($product_categories) ):
+                foreach ($product_categories as $key => $category){
+                    $product_id = $category->term_id;
+                    $cat_thumb_id = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
+                    $shop_catalog_img = wp_get_attachment_image_src( $cat_thumb_id, 'shop_catalog' );
+                    $term_link = get_term_link( $category, 'product_cat' );
+            ?>
             <div class="col-md-6 col-lg-4 col-xs-12">
                 <div class="row">
-                    <img src="<?php echo get_the_post_thumbnail_url() ?>" alt="">
-                    <span style="width: 100%"><?php the_title() ?></span>
-                    <p><?php echo the_content(); ?></p>
+                    <img src="<?php echo $shop_catalog_img[0]?>" alt="">
+                    <span style="width: 100%"><?php echo $category->name; ?></span>
+                    <p><?php echo $category->desc; ?></p>
                 </div>
             </div>
-        <?php endwhile; ?>
+        <?php }
+    endif; ?>
         </div>
-        <span><a href="<?php the_permalink() ?>">Посмотреть все</a></span>
+        <span><a href="">Посмотреть все</a></span>
     </div>
 </section>

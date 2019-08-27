@@ -2,17 +2,21 @@
     $orderby = 'date';
     $order = 'asc';
     $hide_empty = false;
-    $cat_args = array(
-        'orderby'    => $orderby,
-        'order'      => $order,
-        'hide_empty' => $hide_empty,
+    $taxonomy = 'product_cat';
+    $parent_cat_ids = get_terms( $taxonomy, array(
         'parent'     => 0,
-    );
+        'hide_empty' => false,
+        'fields'     => 'ids'
+    ) );
+
+    // Get only "child" WP_Term Product categories
+    $product_categories = get_terms( $taxonomy, array(
+        'exclude'     => $parent_cat_ids,
+        'orderby'    => 'name',
+        'order'      => 'asc',
+        'hide_empty' => false,
+    ) );
     global $wp_query;
-    $cat = $wp_query->get_queried_object();
-    $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
-    $image = wp_get_attachment_url( $thumbnail_id );
-    $product_categories = get_terms( 'product_cat', $cat_args );
 ?>
 <section class="section-index content">
     <div class="section-index__head">
