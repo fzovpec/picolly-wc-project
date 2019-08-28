@@ -14,9 +14,15 @@
  * @package    WooCommerce/Templates
  * @version    1.6.4
  */
-
+global $product;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-the_title( '<h1 class="product_title entry-title">', '</h1>' );
+the_title( '<div class="product__name">', '</div>' );
+the_content();?>
+<div class="product__desc">
+	<?php the_content(); ?>
+</div>
+<?php
+wc_display_product_attributes( $product );

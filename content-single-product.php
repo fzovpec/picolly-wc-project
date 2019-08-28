@@ -56,6 +56,11 @@ if ( post_password_required() ) {
 		</div>
 		<div class="col-lg-1"></div>
 		<div class="col-md-12 col-lg-6 col-xs-12">
+			<style>
+				.woocommerce{
+					display: none;
+				}
+			</style>
 			<?php
 			/**
 			 * Hook: woocommerce_single_product_summary.
@@ -82,6 +87,6 @@ if ( post_password_required() ) {
  * @hooked woocommerce_upsell_display - 15
  * @hooked woocommerce_output_related_products - 20
  */
-do_action( 'woocommerce_after_single_product_summary' );
 ?>
 <?php do_action( 'woocommerce_after_single_product' ); ?>
+</section>

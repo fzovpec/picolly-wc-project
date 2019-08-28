@@ -22,4 +22,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 ?>
-<p class="<?php echo esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) );?>"><?php echo $product->get_price_html(); ?></p>
+<div class="product__price">ЦЕНА: <?php echo get_post_meta(get_the_ID(), '_regular_price', true) . ' Р.'; ?></div>

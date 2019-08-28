@@ -51,18 +51,16 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 		?>
 	</figure>
 </div>*/
-?>
+$attachment_ids = $product->get_gallery_image_ids();?>
 <div class="swiper-container gallery-top">
 	<div class="swiper-wrapper">
-		<div class="swiper-slide"><img src="img/slider_img.png" alt="" class="product__img"></div>
-		<div class="swiper-slide"><img src="img/slider_img.png" alt="" class="product__img"></div>
-		<div class="swiper-slide"><img src="img/slider_img.png" alt="" class="product__img"></div>
-		<div class="swiper-slide"><img src="img/slider_img.png" alt="" class="product__img"></div>
-		<div class="swiper-slide"><img src="img/slider_img.png" alt="" class="product__img"></div>
-		<div class="swiper-slide"><img src="img/slider_img.png" alt="" class="product__img"></div>
-		<div class="swiper-slide"><img src="img/slider_img.png" alt="" class="product__img"></div>
-		<div class="swiper-slide"><img src="img/slider_img.png" alt="" class="product__img"></div>
-		<div class="swiper-slide"><img src="img/slider_img.png" alt="" class="product__img"></div>
-		<div class="swiper-slide"><img src="img/slider_img.png" alt="" class="product__img"></div>
+		<?php
+			if ( $attachment_ids && $product->get_image_id() ):
+				foreach ( $attachment_ids as $attachment_id ) {
+					$image_url = wp_get_attachment_url( $attachment_id );
+					echo '<div class="swiper-slide"><img src="'.$image_url.'" alt="" class="product__img"></div>';
+				}
+			endif;
+		?>
 	</div>
 </div>
