@@ -1,3 +1,5 @@
+<?php
+?>
 <section class="section-index content">
     <?php
         if ( have_posts() ) : while ( have_posts() ) : the_post();
@@ -13,11 +15,6 @@
             <div class="swiper-container gallery-top">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="" class="product__img"></div>
-                </div>
-            </div>
-            <div class="swiper-container gallery-thumbs">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="img/slider_img.png" alt="" class="product__img"></div>
                 </div>
             </div>
         </div>

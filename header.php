@@ -65,7 +65,7 @@
                                     <div class="menu__underline"></div>
                                 </li>
                                 <li class="point_2 col-md-2">
-                                    <a href="category.html">Категории</a>
+                                    <a href="<?php echo get_template_directory_uri() ?>/categories.php">Категории</a>
                                     <div class="menu__underline"></div>
                                 </li>
                                 <li class="point_3 col-md-2">

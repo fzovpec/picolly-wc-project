@@ -4,7 +4,7 @@
         <div class="menu__underline"></div>
     </li>
     <li class="">
-        <a href="category.html">Категории</a>
+        <a href="<?php echo get_template_directory_uri() ?>/category.php">Категории</a>
         <div class="menu__underline"></div>
     </li>
     <li class="">

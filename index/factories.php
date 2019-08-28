@@ -24,7 +24,7 @@
                 <div class="row">
                     <img src="<?php echo $shop_catalog_img[0]?>" alt="">
                     <span style="width: 100%"><?php echo $category->name; ?></span>
-                    <p><?php echo $category->desc; ?></p>
+                    <p><?php echo $category->description; ?></p>
                 </div>
             </div>
         <?php }
