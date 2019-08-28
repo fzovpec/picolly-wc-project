@@ -88,9 +88,9 @@
                         </div>
                     </div>
                     <div class="menu__cart">
-                        <a href="basket.html">
+                        <a href="<?php echo wc_get_cart_url(); ?>">
                             <div class="row">
-                                <span class="menu__cart__price" style="font-family:'FuturaPT'">60 000 Р.</span>
+                                <span class="menu__cart__price" style="font-family:'FuturaPT'"><?php echo WC()->cart->cart_contents_total; ?> Р.</span>
                                 <img src="<?php echo get_template_directory_uri() ?>/img/cart_white.png" width="auto" alt="">
                                 <span>Корзина</span>
                             </div>

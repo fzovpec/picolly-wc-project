@@ -64,3 +64,15 @@ $attachment_ids = $product->get_gallery_image_ids();?>
 		?>
 	</div>
 </div>
+<div class="swiper-container gallery-thumbs">
+	<div class="swiper-wrapper">
+		<?php
+			if ( $attachment_ids && $product->get_image_id() ):
+				foreach ( $attachment_ids as $attachment_id ) {
+					$image_url = wp_get_attachment_url( $attachment_id );
+					echo '<div class="swiper-slide"><img src="'.$image_url.'" alt="" class="product__img"></div>';
+				}
+			endif;
+		?>
+	</div>
+</div>
