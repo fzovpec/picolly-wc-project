@@ -35,7 +35,7 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 					$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 					$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 			?>
-			<div class="col-lg-6 col-md-12" style="width:900px">
+			<div class="col-lg-6 col-md-12" style="width:100vw">
 				<div class="commodities-basket__commodity">
 					<div class="commodities-basket__upper">
 						<div class="commodities-basket__img-block">
@@ -51,10 +51,15 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 								}?>
 							</span>
 							<div class="commodities-basket__characteristics">
-								<span class="commodities-basket__bold-char">ФАБРИКА: </span>
-								<span class="commodities-basket__char">Название</span><br>
-								<span class="commodities-basket__bold-char">МАТЕРИАЛЫ: </span>
-								<span class="commodities-basket__char">Название</span><br>
+								<style>
+									.product__attr-bold{
+										font-size: 16px;
+									}
+									.product__attr-normal{
+										font-size: 16px;
+									}
+								</style>
+								<?php wc_display_product_attributes( $_product ); ?>
 								<div class="commodities-basket__color-block">
 									<div class="commodities-basket__bold-char" style="padding-top: 2px">ЦВЕТ: </div>
 									<div class="commodities-basket__color"></div>
@@ -65,8 +70,10 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 					<div class="commodities-basket__additional">
 						<div class="commodities-basket__quantity">
 							<div class="commodities-basket__quantity-text">
-								<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMjQgMTBoLTEwdi0xMGgtNHYxMGgtMTB2NGgxMHYxMGg0di0xMGgxMHoiLz48L3N2Zz4=">
-								1
+								<form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $_product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
+									<button style="background: none; border: none;" name="add-to-cart" type="submit" value="<?php echo esc_attr( $_product->get_id() ); ?>"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMjQgMTBoLTEwdi0xMGgtNHYxMGgtMTB2NGgxMHYxMGg0di0xMGgxMHoiLz48L3N2Zz4="></button>
+								</form>
+								<?php echo $cart_item['quantity']; ?>
 								<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAxMGgyNHY0aC0yNHoiLz48L3N2Zz4=">
 							</div>
 						</div>
@@ -81,6 +88,15 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 		<?php }?>
 		</div>
 	</div>
+	<?php
+		/**
+		 * Cart collaterals hook.
+		 *
+		 * @hooked woocommerce_cross_sell_display
+		 * @hooked woocommerce_cart_totals - 10
+		 */
+		 do_action( 'woocommerce_cart_collaterals' );
+	?>
 </section>
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
@@ -232,7 +248,7 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 		 * @hooked woocommerce_cross_sell_display
 		 * @hooked woocommerce_cart_totals - 10
 		 */
-		do_action( 'woocommerce_cart_collaterals' );
+		 do_action( 'woocommerce_cart_collaterals' );
 	?>
 </div>
 
