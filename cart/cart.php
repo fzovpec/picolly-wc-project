@@ -16,9 +16,72 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+get_header();
+do_action( 'woocommerce_before_cart' );
+do_action( 'woocommerce_before_cart_table' ); ?>
 
-do_action( 'woocommerce_before_cart' ); ?>
-
+<section class="section-index content">
+	<div class="section-index__head section-factories__head">
+		<div class="section-index__title-block">
+			<h2 class="section-index__title">КОРЗИНА</h2>
+		</div>
+	</div>
+	<div class="section-index__underline section-factoriesт__underline"></div>
+	<div class="commodities-basket">
+		<div class="row">
+			<?php do_action( 'woocommerce_before_cart_table' ); ?>
+			<?php
+				foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+					$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+					$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+			?>
+			<div class="col-lg-6 col-md-12" style="width:900px">
+				<div class="commodities-basket__commodity">
+					<div class="commodities-basket__upper">
+						<div class="commodities-basket__img-block">
+							<img src="<?php echo wp_get_attachment_image_src($_product->get_image_id())[0] ?>" alt="" class="commodities-basket__img">
+						</div>
+						<div class="commodities-basket__text">
+							<span class="commodities-basket__name">
+								<?php
+								if ( ! $product_permalink ) {
+									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
+								} else {
+									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
+								}?>
+							</span>
+							<div class="commodities-basket__characteristics">
+								<span class="commodities-basket__bold-char">ФАБРИКА: </span>
+								<span class="commodities-basket__char">Название</span><br>
+								<span class="commodities-basket__bold-char">МАТЕРИАЛЫ: </span>
+								<span class="commodities-basket__char">Название</span><br>
+								<div class="commodities-basket__color-block">
+									<div class="commodities-basket__bold-char" style="padding-top: 2px">ЦВЕТ: </div>
+									<div class="commodities-basket__color"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="commodities-basket__additional">
+						<div class="commodities-basket__quantity">
+							<div class="commodities-basket__quantity-text">
+								<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMjQgMTBoLTEwdi0xMGgtNHYxMGgtMTB2NGgxMHYxMGg0di0xMGgxMHoiLz48L3N2Zz4=">
+								1
+								<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAxMGgyNHY0aC0yNHoiLz48L3N2Zz4=">
+							</div>
+						</div>
+						<div class="commodities-basket__price">
+							<span class="commodities-basket__price-text">ЦЕНА: <?php
+								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+							?> Р.</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php }?>
+		</div>
+	</div>
+</section>
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
