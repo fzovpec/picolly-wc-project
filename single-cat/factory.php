@@ -1,9 +1,7 @@
 <?php
+    get_header();
 ?>
 <section class="section-index content">
-    <?php
-        if ( have_posts() ) : while ( have_posts() ) : the_post();
-    ?>
     <div class="section-index__head section-factories__head">
         <div class="section-index__title-block section-index__title-block-single">
             <h2 class="section-index__title"><?php the_title() ?></h2>
@@ -26,9 +24,5 @@
             </div>
         </div>
     </div>
-    <?php
-        endwhile;
-        endif;
-        wp_reset_postdata();
-    ?>
 </section>
+<?php get_footer(); ?>

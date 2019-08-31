@@ -2,10 +2,16 @@
 
     <?php
           if(isset($_GET['product_cat'])){
-              require('single-cat/category.php');
+              if(isset($_GET['factory'])){
+                  require('single-cat/factory.php');
+              }
+              else{
+                  require('single-cat/category.php');
+              }
+          }
+          else{
+              the_content();
           }
     ?>
-
-  <?php the_content(); ?>
 
 <?php endwhile; ?>
