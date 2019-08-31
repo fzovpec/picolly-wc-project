@@ -15,6 +15,7 @@
  * @version 3.7.0
  */
 
+$get_checkout_url = wc_get_checkout_url();
 defined( 'ABSPATH' ) || exit;
 get_header();
 do_action( 'woocommerce_before_cart' );
@@ -95,7 +96,7 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 		 */
 		 do_action( 'woocommerce_cart_collaterals' );
 	?>
-	<form type = 'POST'>
+	<form type = 'POST' action="<?php echo esc_url( $get_checkout_url ); ?>">
 		<div class="order row">
 			<div class="order__info col-lg-7 col-md-12">
 				<div class="section-index__head section-factories__head">
@@ -133,22 +134,20 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 				</div>
 				<div class="section-index__underline section-factories__underline section-basket__underline"></div>
 
-				<form class="payment_type" action="index.html" method="post">
-					<div class="row">
-						<label class="" for="#ayment_after_delivery">Оплата наличными курьеру</label>
-						<input checked type="radio" name="payment_type" value="cash" id="payment_after_delivery">
-					</div>
-					<br>
-					<div class="row">
+				<div class="row">
+					<label class="" for="#ayment_after_delivery">Оплата наличными курьеру</label>
+					<input checked type="radio" name="payment_type" value="cash" id="payment_after_delivery">
+				</div>
+				<br>
+				<div class="row">
 
 
-						<label class="" for="#payment_online">Оплата онлайн</label>
+					<label class="" for="#payment_online">Оплата онлайн</label>
 
-						<input type="radio" name="payment_type" value="online" id="payment_online">
+					<input type="radio" name="payment_type" value="online" id="payment_online">
 
-					</div>
-					<button type="submit" name="button"  class="btn-add-to-cart" id="continue_basket">Продолжить</button>
-				</form>
+				</div>
+				<button type="submit" name="button"  class="btn-add-to-cart" id="continue_basket">Продолжить</button>
 				<div id="make_payment" class="">
 					<div class="order__title">НОМЕР КАРТЫ</div>
 					<div class="order__input">
