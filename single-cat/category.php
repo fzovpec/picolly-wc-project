@@ -1,4 +1,3 @@
-<?php get_header(); ?>
 <section class="section-index content">
     <div class="section-index__head section-factories__head">
         <div class="section-index__title-block">
@@ -78,4 +77,3 @@
     ?>
     </div>
 </section>
-<?php get_footer(); ?>

@@ -1,6 +1,6 @@
-<?php
-    get_header();
-?>
+<style>
+    .woocommerce-notices-wrapper{display: none;}.woocommerce-result-count{display: none;}.woocommerce-ordering{display: none;}
+</style>
 <section class="section-index content">
     <div class="section-index__head section-factories__head">
         <div class="section-index__title-block section-index__title-block-single">
@@ -25,4 +25,3 @@
         </div>
     </div>
 </section>
-<?php get_footer(); ?>
