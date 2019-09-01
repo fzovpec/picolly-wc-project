@@ -18,6 +18,7 @@
     ) );
     global $wp_query;
 ?>
+<?php get_search_form(); ?>
 <section class="section-index content">
     <div class="section-index__head">
         <div class="section-index__title-block">
@@ -41,9 +42,11 @@
                         $term_link = get_term_link( $category, 'product_cat' );
                 ?>
                     <div class="slider-indx__slide  swiper-slide">
-                        <img src="<?php echo $shop_catalog_img[0]?>" class="slider-indx__main-img">
-                        <div class="slider-indx__title"><?php echo $category->name; ?></div>
-                        <div class="slider-indx__underline"></div>
+                        <a href = "<?php echo esc_url(get_term_link( $category )) ?>">
+                            <img src="<?php echo $shop_catalog_img[0]?>" class="slider-indx__main-img">
+                            <div class="slider-indx__title"><?php echo $category->name; ?></div>
+                            <div class="slider-indx__underline"></div>
+                        </a>
                     </div>
                     <?php }
                 endif;

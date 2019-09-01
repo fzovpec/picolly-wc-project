@@ -22,9 +22,11 @@
             ?>
             <div class="col-md-6 col-lg-4 col-xs-12">
                 <div class="row">
-                    <img src="<?php echo $shop_catalog_img[0]?>" alt="">
-                    <span style="width: 100%"><?php echo $category->name; ?></span>
-                    <p><?php echo $category->description; ?></p>
+                    <a href ="<?php echo esc_url(get_term_link( $category )). '&factory=true'?>">
+                        <img src="<?php echo $shop_catalog_img[0]?>" alt="">
+                        <span style="width: 100%"><?php echo $category->name; ?></span>
+                        <p><?php echo $category->description; ?></p>
+                    </a>
                 </div>
             </div>
         <?php }

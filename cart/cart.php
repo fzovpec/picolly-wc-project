@@ -17,7 +17,6 @@
 
 $get_checkout_url = wc_get_checkout_url();
 defined( 'ABSPATH' ) || exit;
-get_header();
 do_action( 'woocommerce_before_cart' );
 do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -96,95 +95,6 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 		 */
 		 do_action( 'woocommerce_cart_collaterals' );
 	?>
-	<form type = 'POST' action="<?php echo esc_url( $get_checkout_url ); ?>">
-		<div class="order row">
-			<div class="order__info col-lg-7 col-md-12">
-				<div class="section-index__head section-factories__head">
-					<div class="section-index__title-block">
-						<h2 class="section-index__title">ОФОРМЛЕНИЕ ЗАКАЗА</h2>
-					</div>
-				</div>
-				<div class="section-index__underline section-factories__underline section-basket__underline"></div>
-				<div class="order__title">ФИО</div>
-				<div class="order__input">
-					<input type="text" name="name">
-				</div>
-				<div class="order__title">ТЕЛЕФОН</div>
-				<div class="order__input">
-					<input type="text" name="phone">
-				</div>
-				<div class="order__title">EMAIL</div>
-				<div class="order__input">
-					<input type="email" name="email">
-				</div>
-				<div class="order__title">АДРЕС ДОСТАВКИ</div>
-				<div class="order__input">
-					<input type="text" name="adress">
-				</div>
-				<div class="order__title">КОММЕНТАРИЙ</div>
-				<div class="order__input" style="margin-bottom: 0px">
-					<textarea style="height: 115px" name="comment"></textarea>
-				</div>
-			</div>
-			<div class="order__info col-lg-5 col-md-12 order__right">
-				<div class="section-index__head section-factories__head">
-					<div class="section-index__title-block">
-						<h2 class="section-index__title">ОПЛАТА</h2>
-					</div>
-				</div>
-				<div class="section-index__underline section-factories__underline section-basket__underline"></div>
-
-				<div class="row">
-					<label class="" for="#ayment_after_delivery">Оплата наличными курьеру</label>
-					<input checked type="radio" name="payment_type" value="cash" id="payment_after_delivery">
-				</div>
-				<br>
-				<div class="row">
-
-
-					<label class="" for="#payment_online">Оплата онлайн</label>
-
-					<input type="radio" name="payment_type" value="online" id="payment_online">
-
-				</div>
-				<button type="submit" name="button"  class="btn-add-to-cart" id="continue_basket">Продолжить</button>
-				<div id="make_payment" class="">
-					<div class="order__title">НОМЕР КАРТЫ</div>
-					<div class="order__input">
-						<input type="text" name="card_number">
-						<img src="img/Visa-MasterCard-Maestro-Mir.png" alt="">
-					</div>
-					<div class="order__title">ИМЯ ДЕРЖАТЕЛЯ КАРТЫ</div>
-					<div class="order__input">
-						<input type="text" name="">
-					</div>
-					<div class="row">
-						<div class="col-md-8">
-							<div class="order__title">СРОК ДЕЙСТВИЯ</div>
-							<div class="order__input">
-								<input type="text" name="validity">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="order__title">CVV 2</div>
-							<div class="order__input">
-								<input type="number" name="cvv">
-							</div>
-						</div>
-						<div class="order__text">
-							В случае если Ваш банк поддерживает технологию безопасного проведения нтернет-платежей Verified By Visa или MasterCard Secure Code, для роведения платежа также может потребоваться ввод специального пароля. Способы и
-							возможность получения паролей для совершения интернет-платежей Вы можете уточнить в банке, выпустившем карту.
-							Настоящий сайт поддерживает 256-битное шифрование. Конфиденциальность сообщаемой персональной информации обеспечивается ПАО "Сбербанк России". Введенная информация не будет предоставлена третьим лицам за исключением
-							случаев,
-							предусмотренных законодательством РФ. Проведение платежей по банковским картам осуществляется в строгом соответствии с
-						</div>
-						<button type="submit" name="button"  class="btn-add-to-cart">Оплатить</button>
-					</div>
-				</div>
-			</div>
-	</form>
-</section>
-
 
 <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 

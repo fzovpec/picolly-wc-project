@@ -4,7 +4,7 @@
 <section class="section-index content">
     <div class="section-index__head section-factories__head">
         <div class="section-index__title-block section-index__title-block-single">
-            <h2 class="section-index__title"><?php the_title() ?></h2>
+            <h2 class="section-index__title"><?php woocommerce_page_title(); ?></h2>
         </div>
     </div>
     <div class="section-index__underline"></div>
@@ -18,9 +18,9 @@
         </div>
         <div class="col-lg-1"></div>
         <div class="col-md-12 col-lg-6 col-xs-12">
-            <div class="product__name"><?php the_title() ?></div>
+            <div class="product__name"><?php woocommerce_page_title(); ?></div>
             <div class="product__desc">
-                <?php the_content() ?>
+                <?php  woocommerce_page_content() ?>
             </div>
         </div>
     </div>
