@@ -24,24 +24,27 @@
                 </div>
                 <div class="col-md-5">
                     <div class="search__block">
-                        <div class="search__line">
-                            <img src="<?php echo get_template_directory_uri() ?>/img/search_line.png" class="search__line">
-                        </div>
-                        <div class="search__arrow">
-                            <img src="<?php echo get_template_directory_uri() ?>/img/search_arrow.png" alt="">
-                        </div>
-                        <form class="search">
-                            <input type="text" name="name" placeholder="Поиск">
-                            <select>
-                                <option>Все категории</option>
-                                <option>Тест</option>
-                                <option>Тест</option>
-                                <option>Тест</option>
-                            </select>
-                            <div class="search__box">
-                                <img src="<?php echo get_template_directory_uri() ?>/img/search_icon.png">
-                            </div>
-                        </form>
+                    	<div class="search__line">
+                    		<img src="<?php echo get_template_directory_uri() ?>/img/search_line.png" class="search__line">
+                    	</div>
+                    	<div class="search__arrow">
+                    		<img src="<?php echo get_template_directory_uri() ?>/img/search_arrow.png" alt="">
+                    	</div>
+                    	<form class="search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                    		<input type="text" id="woocommerce-product-search-field-<?php echo isset( $index ) ? absint( $index ) : 0; ?>" class="search-field" placeholder="<?php echo esc_attr__( 'Поиск;', 'woocommerce' ); ?>" value="<?php echo get_search_query(); ?>" name="s">
+                    		<select>
+                    			<option>Все категории</option>
+                    			<option>Тест</option>
+                    			<option>Тест</option>
+                    			<option>Тест</option>
+                    		</select>
+                    		<button type="submit">
+                    			<div class="search__box">
+                    				<img src="<?php echo get_template_directory_uri() ?>/img/search_icon.png">
+                    			</div>
+                    		</button>
+                    		<input type="hidden" name="post_type" value="product" />
+                    	</form>
                     </div>
                 </div>
                 <div class="col-md-4 smm">

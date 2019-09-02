@@ -29,6 +29,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 ?>
 <?php echo do_shortcode('[woocommerce_cart]'); ?>
+<style>.woocommerce-checkout-review-order{display: none;}</style>
 <form style="width:100%" name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 <section class = "section-index content">
 <div class="order row">

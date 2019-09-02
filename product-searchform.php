@@ -20,9 +20,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<form role="search" method="get" class="woocommerce-product-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-	<label class="screen-reader-text" for="woocommerce-product-search-field-<?php echo isset( $index ) ? absint( $index ) : 0; ?>"><?php esc_html_e( 'Search for:', 'woocommerce' ); ?></label>
-	<input type="search" id="woocommerce-product-search-field-<?php echo isset( $index ) ? absint( $index ) : 0; ?>" class="search-field" placeholder="<?php echo esc_attr__( 'Search products&hellip;', 'woocommerce' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
-	<button type="submit" value="<?php echo esc_attr_x( 'Search', 'submit button', 'woocommerce' ); ?>"><?php echo esc_html_x( 'Search', 'submit button', 'woocommerce' ); ?></button>
-	<input type="hidden" name="post_type" value="product" />
-</form>
+<div class="search__block">
+	<div class="search__line">
+		<img src="<?php echo get_template_directory_uri() ?>/img/search_line.png" class="search__line">
+	</div>
+	<div class="search__arrow">
+		<img src="<?php echo get_template_directory_uri() ?>/img/search_arrow.png" alt="">
+	</div>
+	<form class="search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+		<input type="text" id="woocommerce-product-search-field-<?php echo isset( $index ) ? absint( $index ) : 0; ?>" class="search-field" placeholder="<?php echo esc_attr__( 'Поиск;', 'woocommerce' ); ?>" value="<?php echo get_search_query(); ?>" name="s">
+		<select>
+			<option>Все категории</option>
+			<option>Тест</option>
+			<option>Тест</option>
+			<option>Тест</option>
+		</select>
+		<button type="submit" value="<?php echo esc_attr_x( 'Search', 'submit button', 'woocommerce' ); ?>"><?php echo esc_html_x( 'Search', 'submit button', 'woocommerce' ); ?>>
+			<div class="search__box">
+				<img src="<?php echo get_template_directory_uri() ?>/img/search_icon.png">
+			</div>
+		</button>
+		<input type="hidden" name="post_type" value="product" />
+	</form>
+</div>

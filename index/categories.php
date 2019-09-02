@@ -18,7 +18,6 @@
     ) );
     global $wp_query;
 ?>
-<?php get_search_form(); ?>
 <section class="section-index content">
     <div class="section-index__head">
         <div class="section-index__title-block">
