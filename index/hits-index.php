@@ -4,8 +4,8 @@
             <h2 class="section-index__title">Хиты продаж</h2>
         </div>
         <div class="section-index__arrows">
-            <img class="section-index__arrow swiper-button-prev" id="swiper-button-prev_2" src="img/arrow_left.png">
-            <img class="section-index__arrow swiper-button-next" id="swiper-button-next_2" src="img/arrow_right.png">
+            <img class="section-index__arrow swiper-button-prev" id="swiper-button-prev_2" src="<?php echo get_template_directory_uri() ?>/img/arrow_left.png">
+            <img class="section-index__arrow swiper-button-next" id="swiper-button-next_2" src="<?php echo get_template_directory_uri() ?>/img/arrow_right.png">
         </div>
     </div>
     <div class="section-index__underline"></div>
@@ -22,8 +22,10 @@
                     while ( $loop->have_posts() ) : $loop->the_post();
                 ?>
                 <div class="slider-indx__slide  swiper-slide">
-                    <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="slider-indx__main-img">
-                    <div class="slider-indx__title"><?php the_title(); ?></div>
+                    <a href = "<?php the_permalink(); ?>">
+                        <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="slider-indx__main-img">
+                    </a>
+                    <div class="slider-indx__title"><a href = "<?php the_permalink(); ?>"><?php the_title(); ?></a></div>
                     <div class="slider-indx__underline"></div>
                     <div class="slider-indx__price-list">
                         <div class="slider-indx__info">
@@ -37,7 +39,11 @@
                             </div>
                         </div>
                         <div class="slider-indx__add-to-cart">
-                            <div class="btn-add-to-cart">В КОРЗИНУ</div>
+                            <?php if ( $product->is_in_stock() ) : ?>
+                                <form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
+                        			<button name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn-add-to-cart" style="float: left;" type="submit">В КОРЗИНУ</button>
+                        		</form>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

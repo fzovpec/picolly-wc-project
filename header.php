@@ -30,7 +30,7 @@
                     	<div class="search__arrow">
                     		<img src="<?php echo get_template_directory_uri() ?>/img/search_arrow.png" alt="">
                     	</div>
-                    	<form class="search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                    	<form class="search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ).'?cat'; ?>">
                     		<input type="text" id="woocommerce-product-search-field-<?php echo isset( $index ) ? absint( $index ) : 0; ?>" class="search-field" placeholder="<?php echo esc_attr__( 'Поиск;', 'woocommerce' ); ?>" value="<?php echo get_search_query(); ?>" name="s">
                     		<select>
                     			<option>Все категории</option>
@@ -44,6 +44,7 @@
                     			</div>
                     		</button>
                     		<input type="hidden" name="post_type" value="product" />
+                            <input type="hidden" value="22" name="cat" id="scat" />
                     	</form>
                     </div>
                 </div>
@@ -91,7 +92,7 @@
                         </div>
                     </div>
                     <div class="menu__cart">
-                        <a href="<?php echo wc_get_cart_url(); ?>">
+                        <a href="<?php echo wc_get_checkout_url(); ?>">
                             <div class="row">
                                 <span class="menu__cart__price" style="font-family:'FuturaPT'"><?php echo WC()->cart->cart_contents_total; ?> Р.</span>
                                 <img src="<?php echo get_template_directory_uri() ?>/img/cart_white.png" width="auto" alt="">
@@ -109,9 +110,9 @@
     <div class="mobile-sub-info">
 
         <div class="mobile-menu__cart">
-            <a href="basket.html">
+            <a href="<?php echo wc_get_checkout_url(); ?>">
                 <div class="row">
-                    <span class="mobile-menu__cart__price" style="font-family:'FuturaPT'">60 000 Р.</span>
+                    <span class="mobile-menu__cart__price" style="font-family:'FuturaPT'"><?php echo WC()->cart->cart_contents_total; ?> Р.</span>
                     <img src="<?php echo get_template_directory_uri() ?>/img/cart_white.png" width="auto" alt="">
                 </div>
             </a>

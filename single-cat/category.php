@@ -5,6 +5,13 @@
         </div>
 
     </div>
+    <?php
+        $category = get_queried_object();
+        $product_categories = get_terms( $taxonomy, array(
+            'parent'     => $category->term_id,
+            'hide_empty' => false,
+        ) );
+    ?>
     <div class="section-index__underline section-factoriesт__underline"></div>
     <div class="section-index__images category__row row">
         <div class="col-lg-3 col-md-12 row select-brown__container">
@@ -16,10 +23,13 @@
             <div class="select-brown__container">
                 <div class="select-brown">
                     <div class="select-brown__head">КАТЕГОРИЯ</div>
-                    <div class="select-brown__category">для девочек</div>
-                    <div class="select-brown__category">для девочек</div>
-                    <div class="select-brown__category">для девочек</div>
-                    <div class="select-brown__category">для девочек</div>
+                    <?php if( !empty($product_categories) ):
+                        foreach ($product_categories as $key => $cat){?>
+                            <a href = "<?php echo esc_url(get_term_link( $cat )) ?>">
+                                <div class="select-brown__category"><?php echo $cat->name; ?></div>
+                            </a>
+                    <?php }
+                        endif;?>
                 </div>
             </div>
             <div class="select-brown__container">
