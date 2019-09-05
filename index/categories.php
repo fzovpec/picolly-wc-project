@@ -6,16 +6,9 @@
     $parent_cat_ids = get_terms( $taxonomy, array(
         'parent'     => 0,
         'hide_empty' => false,
-        'fields'     => 'ids'
     ) );
 
     // Get only "child" WP_Term Product categories
-    $product_categories = get_terms( $taxonomy, array(
-        'exclude'     => $parent_cat_ids,
-        'orderby'    => 'name',
-        'order'      => 'asc',
-        'hide_empty' => false,
-    ) );
     global $wp_query;
 ?>
 <section class="section-index content">
@@ -33,6 +26,13 @@
         <div class="section-index__slider slider-index col-md-12 swiper-container" id="swiper-container_5">
             <div class="flex-row swiper-wrapper">
                 <?php
+                if( !empty($parent_cat_ids) ):
+                    foreach ($parent_cat_ids as $key => $parent){
+                        $taxonomy = 'product_cat';
+                        $product_categories = get_terms( $taxonomy, array(
+                            'parent'     => $parent->term_id,
+                            'hide_empty' => false,
+                        ) );
                 if( !empty($product_categories) ):
                     foreach ($product_categories as $key => $category){
                         $product_id = $category->term_id;
@@ -49,6 +49,8 @@
                     </div>
                     <?php }
                 endif;
+            }
+        endif;
                 ?>
             </div>
         </div>
