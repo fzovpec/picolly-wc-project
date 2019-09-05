@@ -20,7 +20,11 @@ defined( 'ABSPATH' ) || exit;
 global $product;
 
 // Ensure visibility.
-if(isset($_GET['factory'])){
+$category = get_queried_object();
+if(isset($_GET['all'])){
+	require('single-cat/category.php');
+}
+elseif((int)$category->parent == 0){
 	require('single-cat/factory.php');
 }
 else{
