@@ -1,3 +1,10 @@
+<?php
+    global $product;
+    $ages = array();
+    $types = array();
+    require('get_ages.php');
+    require('get_types.php');
+?>
 <section class="section-index content">
     <div class="section-index__head section-factories__head">
         <div class="section-index__title-block">
@@ -35,19 +42,17 @@
             <div class="select-brown__container">
                 <div class="select-brown">
                     <div class="select-brown__head">Тип товара</div>
-                    <div class="select-brown__category">стол</div>
-                    <div class="select-brown__category">стул</div>
-                    <div class="select-brown__category">шкаф</div>
-                    <div class="select-brown__category">кровать</div>
+                    <?php foreach ($types as $key => $type){ ?>
+                        <div class="select-brown__category"><?php echo $type; ?></div>
+                    <?php } ?>
                 </div>
             </div>
             <div class="select-brown__container">
                 <div class="select-brown">
-                    <div class="select-brown__head">ФАБРИКА</div>
-                    <div class="select-brown__category">фабрика</div>
-                    <div class="select-brown__category">фабрика</div>
-                    <div class="select-brown__category">фабрика</div>
-                    <div class="select-brown__category">фабрика</div>
+                    <div class="select-brown__head">Возраст</div>
+                    <?php foreach ($ages as $key => $age){ ?>
+                    <div class="select-brown__category"><?php echo $age; ?></div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
