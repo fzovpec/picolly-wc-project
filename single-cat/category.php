@@ -27,18 +27,19 @@
                     <div class="select-brown__head">ФИЛЬТРЫ</div>
                 </div>
             </div>
+            <?php if( !empty($product_categories) ):?>
             <div class="select-brown__container">
                 <div class="select-brown">
                     <div class="select-brown__head">КАТЕГОРИЯ</div>
-                    <?php if( !empty($product_categories) ):
+                    <?php
                         foreach ($product_categories as $key => $cat){?>
                             <a href = "<?php echo esc_url(get_term_link( $cat )) ?>">
                                 <div class="select-brown__category"><?php echo $cat->name; ?></div>
                             </a>
-                    <?php }
-                        endif;?>
+                    <?php }?>
                 </div>
             </div>
+        <?php endif; ?>
             <div class="select-brown__container">
                 <div class="select-brown">
                     <div class="select-brown__head">Тип товара</div>
