@@ -40,7 +40,7 @@
                         </div>
                         <div class="slider-indx__add-to-cart">
                             <?php if ( $product->is_in_stock() ) : ?>
-                                <form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
+                                <form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', '/' ) ); ?>" method="post" enctype='multipart/form-data'>
                         			<button name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn-add-to-cart" style="float: left;" type="submit">В КОРЗИНУ</button>
                         		</form>
                             <?php endif; ?>

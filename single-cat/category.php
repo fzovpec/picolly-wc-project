@@ -43,7 +43,7 @@
                 <div class="select-brown">
                     <div class="select-brown__head">Тип товара</div>
                     <?php foreach ($types as $key => $type){ ?>
-                        <div class="select-brown__category"><?php echo $type; ?></div>
+                        <a href="<?php echo esc_url(get_term_link( get_queried_object()->term_id )).'&type='. $type;?>"><div class="select-brown__category"><?php echo $type; ?></div></a>
                     <?php } ?>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                 <div class="select-brown">
                     <div class="select-brown__head">Возраст</div>
                     <?php foreach ($ages as $key => $age){ ?>
-                    <div class="select-brown__category"><?php echo $age; ?></div>
+                    <a href="<?php echo esc_url(get_term_link( get_queried_object()->term_id )).'&age='. $age;?>"><div class="select-brown__category"><?php echo $age; ?></div></a>
                     <?php } ?>
                 </div>
             </div>
@@ -65,6 +65,16 @@
                 $loop = new WP_Query( $args );
 
                 while ( $loop->have_posts() ) : $loop->the_post();
+                if(isset($_GET['type'])){
+                    if($product->get_attribute('type') != $_GET['type']){
+                        continue;
+                    }
+                }
+                if(isset($_GET['age'])){
+                    if($product->get_attribute('age') != $_GET['age']){
+                        continue;
+                    }
+                }
             ?>
             <div class="row col-lg-9 col-md-12">
                 <div class="slider-indx__slide col-lg-4 col-md-6">
