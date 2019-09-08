@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php get_header();
+    global $product;
+    $ages = array();
+    $types = array();
+    require('single-cat/get_ages.php');
+    require('single-cat/get_types.php');
+?>
 
 <section class="section-index content">
     <div class="section-index__head section-factories__head">
@@ -17,29 +23,18 @@
             </div>
             <div class="select-brown__container">
                 <div class="select-brown">
-                    <div class="select-brown__head">КАТЕГОРИЯ</div>
-                    <div class="select-brown__category">для девочек</div>
-                    <div class="select-brown__category">для девочек</div>
-                    <div class="select-brown__category">для девочек</div>
-                    <div class="select-brown__category">для девочек</div>
-                </div>
-            </div>
-            <div class="select-brown__container">
-                <div class="select-brown">
                     <div class="select-brown__head">Тип товара</div>
-                    <div class="select-brown__category">стол</div>
-                    <div class="select-brown__category">стул</div>
-                    <div class="select-brown__category">шкаф</div>
-                    <div class="select-brown__category">кровать</div>
+                    <?php foreach ($types as $key => $type){ ?>
+                        <a href="<?php echo '&type='. $type;?>"><div class="select-brown__category"><?php echo $type; ?></div></a>
+                    <?php } ?>
                 </div>
             </div>
             <div class="select-brown__container">
                 <div class="select-brown">
-                    <div class="select-brown__head">ФАБРИКА</div>
-                    <div class="select-brown__category">фабрика</div>
-                    <div class="select-brown__category">фабрика</div>
-                    <div class="select-brown__category">фабрика</div>
-                    <div class="select-brown__category">фабрика</div>
+                    <div class="select-brown__head">Возраст</div>
+                    <?php foreach ($ages as $key => $age){ ?>
+                    <a href="<?php echo '&age='. $age;?>"><div class="select-brown__category"><?php echo $age; ?></div></a>
+                    <?php } ?>
                 </div>
             </div>
         </div>

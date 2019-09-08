@@ -5,6 +5,12 @@
     <?php include 'header/head.php' ?>
 </head>
 <body>
+    <?php
+        $parent_cat_ids = get_terms( $taxonomy, array(
+            'parent'     => 0,
+            'hide_empty' => false,
+        ) );
+    ?>
     <header>
         <div class="mobile-menu">
             <div class="mobile-menu__close">
@@ -34,9 +40,23 @@
                     		<input type="text" id="woocommerce-product-search-field-<?php echo isset( $index ) ? absint( $index ) : 0; ?>" class="search-field" placeholder="<?php echo esc_attr__( 'Поиск;', 'woocommerce' ); ?>" value="<?php echo get_search_query(); ?>" name="s">
                     		<select name = 'category'>
                     			<option>Все категории</option>
-                    			<option>Тест</option>
-                    			<option>Тест</option>
-                    			<option>Тест</option>
+                                <?php
+                                if( !empty($parent_cat_ids) ):
+                                    foreach ($parent_cat_ids as $key => $parent){
+                                        $taxonomy = 'product_cat';
+                                        $product_categories = get_terms( $taxonomy, array(
+                                            'parent'     => $parent->term_id,
+                                            'hide_empty' => false,
+                                        ) );
+                                if( !empty($product_categories) ):
+                                    foreach ($product_categories as $key => $category){
+                                ?>
+                    			<option><?php echo $category->name;?></option>
+                            <?php }
+                            endif;
+                            }
+                            endif;
+                            ?>
                     		</select>
                     		<button type="submit">
                     			<div class="search__box">
@@ -44,7 +64,7 @@
                     			</div>
                     		</button>
                     		<input type="hidden" name="post_type" value="product" />
-                            <input type="hidden" value="<?php echo $_GET['category'];?>" name="cat" id="scat" />
+                            <input type="hidden" value="<?php echo get_cat_ID($_GET['category']);?>" name="cat" id="scat" />
                     	</form>
                     </div>
                 </div>
