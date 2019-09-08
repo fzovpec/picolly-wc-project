@@ -43,40 +43,40 @@
                 </div>
             </div>
         </div>
-            <?php
-                $args = array(
-                    'post_type'      => 'product',
-                );
-                $loop = new WP_Query( $args );
+        <div class="row col-lg-9 col-md-12">
+        <?php
+            $args = array(
+                'post_type'      => 'product',
+            );
+            $loop = new WP_Query( $args );
 
-                while ( $loop->have_posts() ) : $loop->the_post();
-            ?>
-            <div class="row col-lg-9 col-md-12">
-                <div class="slider-indx__slide col-lg-4 col-md-6">
-                    <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="slider-indx__main-img">
-                    <div class="slider-indx__title"><?php the_title(); ?></div>
-                    <div class="slider-indx__underline"></div>
-                    <div class="slider-indx__price-list">
-                        <div class="slider-indx__info">
-                            <span class="slider-indx__price"><?php echo get_post_meta(get_the_ID(), '_regular_price', true) . ' Р.'; ?></span>
-                            <div class="slider-indx__rate">
-                                <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
-                                <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
-                                <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
-                                <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
-                                <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
-                            </div>
+            while ( $loop->have_posts() ) : $loop->the_post();
+        ?>
+            <div class="slider-indx__slide col-lg-4 col-md-6">
+                <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="slider-indx__main-img">
+                <div class="slider-indx__title"><?php the_title(); ?></div>
+                <div class="slider-indx__underline"></div>
+                <div class="slider-indx__price-list">
+                    <div class="slider-indx__info">
+                        <span class="slider-indx__price"><?php echo get_post_meta(get_the_ID(), '_regular_price', true) . ' Р.'; ?></span>
+                        <div class="slider-indx__rate">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
                         </div>
-                        <div class="slider-indx__add-to-cart">
-                            <div class="btn-add-to-cart">В КОРЗИНУ</div>
-                        </div>
+                    </div>
+                    <div class="slider-indx__add-to-cart">
+                        <div class="btn-add-to-cart">В КОРЗИНУ</div>
                     </div>
                 </div>
             </div>
-        <?php endwhile;
-    ?>
-    </div>
+<?php endwhile;
+?>
 	<?php endif;?>
+    </div>
+</div>
 </section>
 
 

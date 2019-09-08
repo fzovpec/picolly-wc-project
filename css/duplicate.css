@@ -1,0 +1,43 @@
+.section-index__main-img.col-md-6{
+    padding: 0;
+    border: 1px solid #ce2a6e;
+    margin-bottom: 0;
+}
+.first-index{
+    margin-bottom: 0;
+}
+
+
+.section-index{
+    max-width: none;
+    width: 100%;
+}
+.categorical{
+    padding-left: 25px;
+    padding-right: 25px
+}
+.categorical .row{
+    display: flex;
+    justify-content: center
+}
+
+.categorical .row .col-md-6{
+    padding: 4.5%;
+    text-align: justify;
+}
+
+.categorical .row .col-md-6 span{
+    text-transform: uppercase;
+    padding-top: 2px
+}
+
+@media screen and (max-width: 640px){
+    .section-index{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+.section-index__arrows{
+    width: 100%
+}

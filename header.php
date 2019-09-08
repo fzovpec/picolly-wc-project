@@ -32,7 +32,7 @@
                     	</div>
                     	<form class="search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ).'?cat'; ?>">
                     		<input type="text" id="woocommerce-product-search-field-<?php echo isset( $index ) ? absint( $index ) : 0; ?>" class="search-field" placeholder="<?php echo esc_attr__( 'Поиск;', 'woocommerce' ); ?>" value="<?php echo get_search_query(); ?>" name="s">
-                    		<select>
+                    		<select name = 'category'>
                     			<option>Все категории</option>
                     			<option>Тест</option>
                     			<option>Тест</option>
@@ -44,7 +44,7 @@
                     			</div>
                     		</button>
                     		<input type="hidden" name="post_type" value="product" />
-                            <input type="hidden" value="22" name="cat" id="scat" />
+                            <input type="hidden" value="<?php echo $_GET['category'];?>" name="cat" id="scat" />
                     	</form>
                     </div>
                 </div>
