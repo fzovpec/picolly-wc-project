@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php get_header();
+    global $product;
+    $ages = array();
+    $types = array();
+    require('single-cat/get_ages.php');
+    require('single-cat/get_types.php');
+?>
 
 <section class="section-index content">
     <div class="section-index__head section-factories__head">
@@ -17,66 +23,55 @@
             </div>
             <div class="select-brown__container">
                 <div class="select-brown">
-                    <div class="select-brown__head">КАТЕГОРИЯ</div>
-                    <div class="select-brown__category">для девочек</div>
-                    <div class="select-brown__category">для девочек</div>
-                    <div class="select-brown__category">для девочек</div>
-                    <div class="select-brown__category">для девочек</div>
-                </div>
-            </div>
-            <div class="select-brown__container">
-                <div class="select-brown">
                     <div class="select-brown__head">Тип товара</div>
-                    <div class="select-brown__category">стол</div>
-                    <div class="select-brown__category">стул</div>
-                    <div class="select-brown__category">шкаф</div>
-                    <div class="select-brown__category">кровать</div>
+                    <?php foreach ($types as $key => $type){ ?>
+                        <a href="<?php echo '&type='. $type;?>"><div class="select-brown__category"><?php echo $type; ?></div></a>
+                    <?php } ?>
                 </div>
             </div>
             <div class="select-brown__container">
                 <div class="select-brown">
-                    <div class="select-brown__head">ФАБРИКА</div>
-                    <div class="select-brown__category">фабрика</div>
-                    <div class="select-brown__category">фабрика</div>
-                    <div class="select-brown__category">фабрика</div>
-                    <div class="select-brown__category">фабрика</div>
+                    <div class="select-brown__head">Возраст</div>
+                    <?php foreach ($ages as $key => $age){ ?>
+                    <a href="<?php echo '&age='. $age;?>"><div class="select-brown__category"><?php echo $age; ?></div></a>
+                    <?php } ?>
                 </div>
             </div>
         </div>
-            <?php
-                $args = array(
-                    'post_type'      => 'product',
-                );
-                $loop = new WP_Query( $args );
+        <div class="row col-lg-9 col-md-12">
+        <?php
+            $args = array(
+                'post_type'      => 'product',
+            );
+            $loop = new WP_Query( $args );
 
-                while ( $loop->have_posts() ) : $loop->the_post();
-            ?>
-            <div class="row col-lg-9 col-md-12">
-                <div class="slider-indx__slide col-lg-4 col-md-6">
-                    <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="slider-indx__main-img">
-                    <div class="slider-indx__title"><?php the_title(); ?></div>
-                    <div class="slider-indx__underline"></div>
-                    <div class="slider-indx__price-list">
-                        <div class="slider-indx__info">
-                            <span class="slider-indx__price"><?php echo get_post_meta(get_the_ID(), '_regular_price', true) . ' Р.'; ?></span>
-                            <div class="slider-indx__rate">
-                                <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
-                                <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
-                                <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
-                                <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
-                                <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
-                            </div>
+            while ( $loop->have_posts() ) : $loop->the_post();
+        ?>
+            <div class="slider-indx__slide col-lg-4 col-md-6">
+                <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="slider-indx__main-img">
+                <div class="slider-indx__title"><?php the_title(); ?></div>
+                <div class="slider-indx__underline"></div>
+                <div class="slider-indx__price-list">
+                    <div class="slider-indx__info">
+                        <span class="slider-indx__price"><?php echo get_post_meta(get_the_ID(), '_regular_price', true) . ' Р.'; ?></span>
+                        <div class="slider-indx__rate">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
                         </div>
-                        <div class="slider-indx__add-to-cart">
-                            <div class="btn-add-to-cart">В КОРЗИНУ</div>
-                        </div>
+                    </div>
+                    <div class="slider-indx__add-to-cart">
+                        <div class="btn-add-to-cart">В КОРЗИНУ</div>
                     </div>
                 </div>
             </div>
-        <?php endwhile;
-    ?>
-    </div>
+<?php endwhile;
+?>
 	<?php endif;?>
+    </div>
+</div>
 </section>
 
 
