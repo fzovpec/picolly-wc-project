@@ -14,7 +14,7 @@
  * @package WooCommerce/Templates
  * @version 3.7.0
  */
-
+global $product;
 $get_checkout_url = wc_get_checkout_url();
 defined( 'ABSPATH' ) || exit;
 do_action( 'woocommerce_before_cart' );
@@ -70,9 +70,22 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 					<div class="commodities-basket__additional">
 						<div class="commodities-basket__quantity">
 							<div class="commodities-basket__quantity-text">
-								<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMjQgMTBoLTEwdi0xMGgtNHYxMGgtMTB2NGgxMHYxMGg0di0xMGgxMHoiLz48L3N2Zz4=">
+								<?php
+
+			                    echo apply_filters( 'woocommerce_loop_add_to_cart_link',
+			                        sprintf( '<a href="%s" rel="nofollow" data-product_id="%s" data-product_sku="%s" class="button %s product_type_%s">+</a>',
+			                            esc_url( $_product->add_to_cart_url()),
+			                            esc_attr( $_product->id ),
+			                            esc_attr( $_product->get_sku() ),
+			                            $_product->is_purchasable() ? 'add_to_cart_button' : '',
+			                            esc_attr( $_product->product_type ),
+			                            esc_html( $_product->add_to_cart_text() )
+			                        ),
+			                        $_product );
+								?>
+
 								<?php echo $cart_item['quantity']; ?>
-								<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAxMGgyNHY0aC0yNHoiLz48L3N2Zz4=">
+								<a href = '<?php echo WC()->cart->get_remove_url( $_product->id )?>'><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAxMGgyNHY0aC0yNHoiLz48L3N2Zz4="></a>
 							</div>
 						</div>
 						<div class="commodities-basket__price">
