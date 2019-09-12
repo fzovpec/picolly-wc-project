@@ -63,7 +63,7 @@ if ( post_password_required() ) {
 			</style>
 			<?php
 			/**
-			 * Hook: woocommerce_single_product_summary.
+			 * Hook: woocommerce_single_product_sumary.
 			 *
 			 * @hooked woocommerce_template_single_title - 5
 			 * @hooked woocommerce_template_single_rating - 10
