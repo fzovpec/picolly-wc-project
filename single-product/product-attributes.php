@@ -35,21 +35,3 @@ global $product;
 		<span class="product__attr-normal"><?php echo wp_filter_nohtml_kses(wp_kses_post( $product_attribute['value'], '' )); ?></span>
 	</div>
 <?php endforeach; ?>
-<?php foreach ( $product_attributes as $product_attribute_key => $product_attribute ) : ?>
-		<?php
-		$formated_value = explode(',', wp_filter_nohtml_kses(wp_kses_post( $product_attribute['value'], '' )));
-		if ($product_attribute['label'] == 'color' ):?>
-			<div class="product__last">
-				<div class="product__attr">
-					<span class="product__attr-bold">ЦВЕТА:</span>
-				</div>
-				<div class="product__colors">
-					<?php foreach( $formated_value as $color_value ): ?>
-						<div class="product__color" style = "background: <?php echo $color_value ?>"></div>
-					<?php endforeach; ?>
-				</div>
-				<div class="product__line"></div>
-			</div>
-	<?php endif;
-	endforeach;
-?>

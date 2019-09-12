@@ -22,4 +22,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 ?>
-<div class="product__price">ЦЕНА: <?php echo get_post_meta(get_the_ID(), '_regular_price', true) . ' Р.'; ?></div>
+<div class="product__price">ЦЕНА: <?php echo $product->get_price_html(); ?></div>

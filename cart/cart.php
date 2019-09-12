@@ -44,8 +44,9 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 						<div class="commodities-basket__text">
 							<span class="commodities-basket__name">
 								<?php
+								$formated_value = explode('-', $_product->get_name());
 								if ( ! $product_permalink ) {
-									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
+									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $formated_value[0], $cart_item, $cart_item_key ) . '&nbsp;' );
 								} else {
 									echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
 								}?>
@@ -61,8 +62,8 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 								</style>
 								<?php wc_display_product_attributes( $_product ); ?>
 								<div class="commodities-basket__color-block">
-									<div class="commodities-basket__bold-char" style="padding-top: 2px">ЦВЕТ: </div>
-									<div class="commodities-basket__color"></div>
+									<div class="commodities-basket__bold-char" style="padding-top: 2px;?>">ЦВЕТ: </div>
+									<div class="commodities-basket__color" style="background: <?php echo $formated_value[1];?>"></div>
 								</div>
 							</div>
 						</div>
