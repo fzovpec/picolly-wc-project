@@ -57,6 +57,7 @@
                 </div>
             </div>
         </div>
+        <div class="row col-lg-9 col-md-12">
             <?php
                 $args = array(
                     'post_type'      => 'product',
@@ -77,7 +78,6 @@
                     }
                 }
             ?>
-            <div class="row col-lg-9 col-md-12">
                 <div class="slider-indx__slide col-lg-4 col-md-6">
                     <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="slider-indx__main-img">
                     <div class="slider-indx__title"><?php the_title(); ?></div>
@@ -98,8 +98,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
         <?php endwhile;
     ?>
+    </div>
     </div>
 </section>
