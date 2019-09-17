@@ -28,5 +28,5 @@ elseif((int)$category->parent == 0){
 	require('single-cat/factory.php');
 }
 else{
-	require('single-cat/category.php');
+	require_once('single-cat/category.php');
 }
