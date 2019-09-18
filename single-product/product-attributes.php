@@ -26,7 +26,7 @@ global $product;
 ?>
 <?php foreach ( $product_attributes as $product_attribute_key => $product_attribute ) : ?>
 		<?php
-		if ($product_attribute['label'] == 'color' ){
+		if ($product_attribute['label'] == 'age' || $product_attribute['label'] == 'type' || $product_attribute['label'] == 'color'){
 			continue;
 		}
 	?>

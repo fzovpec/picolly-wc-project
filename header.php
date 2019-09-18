@@ -114,7 +114,8 @@
                     <div class="menu__cart">
                         <a href="<?php echo wc_get_checkout_url(); ?>">
                             <div class="row">
-                                <span class="menu__cart__price" style="font-family:'FuturaPT'"><?php echo WC()->cart->cart_contents_total; ?> Р.</span>
+                                <?php do_action('woocommerce_before_calculate_totals');?>
+                                <span class="menu__cart__price" style="font-family:'FuturaPT'"><?php wc_cart_totals_subtotal_html(); ?></span>
                                 <img src="<?php echo get_template_directory_uri() ?>/img/cart_white.png" width="auto" alt="">
                                 <span>Корзина</span>
                             </div>

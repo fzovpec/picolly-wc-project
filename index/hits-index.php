@@ -29,7 +29,7 @@
                     <div class="slider-indx__underline"></div>
                     <div class="slider-indx__price-list">
                         <div class="slider-indx__info">
-                            <span class="slider-indx__price"><?php echo get_post_meta(get_the_ID(), '_regular_price', true) . ' Р.'; ?></span>
+                            <span class="slider-indx__price"><?php echo $product->get_price_html(); ?></span>
                             <div class="slider-indx__rate">
                                 <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
                                 <img src="<?php echo get_template_directory_uri() ?>/img/star.png">
