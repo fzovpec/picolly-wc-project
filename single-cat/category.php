@@ -67,13 +67,14 @@
                 $loop = new WP_Query( $args );
 
                 while ( $loop->have_posts() ) : $loop->the_post();
+                $prdt = wc_get_product( get_the_ID() ) ;
                 if(isset($_GET['type'])){
-                    if($product->get_attribute('type') != $_GET['type']){
+                    if($prdt->get_attribute('type') != $_GET['type']){
                         continue;
                     }
                 }
                 if(isset($_GET['age'])){
-                    if($product->get_attribute('age') != $_GET['age']){
+                    if($prdt->get_attribute('age') != $_GET['age']){
                         continue;
                     }
                 }

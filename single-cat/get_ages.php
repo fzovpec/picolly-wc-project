@@ -5,7 +5,8 @@ $args = array(
 );
 $loop = new WP_Query( $args );
 while ( $loop->have_posts() ) : $loop->the_post();
-    $product_attribute = $product->get_attribute('age');
+    $prdt = wc_get_product( get_the_ID() ) ;
+    $product_attribute = $prdt->get_attribute('age');
     if(!empty($product_attribute)){
         array_push($ages, $product_attribute);
     }
