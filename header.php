@@ -144,3 +144,4 @@
             </div>
         </div>
     </div>
+<style>.woocommerce-notices-wrapper{display: none;}.woocommerce-result-count{display: none;}.woocommerce-ordering{display: none;}</style>

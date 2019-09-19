@@ -9,4 +9,4 @@ while ( $loop->have_posts() ) : $loop->the_post();
         array_push($types, $product_attribute);
     }
 endwhile;
-array_unique($types);
+$types = array_unique($types);

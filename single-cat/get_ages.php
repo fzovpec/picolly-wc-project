@@ -1,6 +1,7 @@
 <?php
 $args = array(
     'post_type'      => 'product',
+    'product_cat'    => $_GET['product_cat']
 );
 $loop = new WP_Query( $args );
 while ( $loop->have_posts() ) : $loop->the_post();
@@ -9,4 +10,4 @@ while ( $loop->have_posts() ) : $loop->the_post();
         array_push($ages, $product_attribute);
     }
 endwhile;
-array_unique($ages);
+$ages = array_unique($ages);
