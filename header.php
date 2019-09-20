@@ -1,3 +1,8 @@
+<?php
+    if(isset($_GET['url'])){
+        header('Location: '.$_GET['url'].'');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 

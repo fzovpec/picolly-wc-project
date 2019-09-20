@@ -18,6 +18,7 @@
 defined( 'ABSPATH' ) || exit;
 
 global $product;
+global $wp;
 
 if ( ! $product->is_purchasable() ) {
 	return;
@@ -26,9 +27,16 @@ if ( ! $product->is_purchasable() ) {
 echo wc_get_stock_html( $product ); // WPCS: XSS ok.
 
 if ( $product->is_in_stock() ) : ?>
-	<div class="slider-indx__add-to-cart">
-		<form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
-			<button name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn-add-to-cart" style="width: 230px;float: left; margin-top: 25px" type="submit">ДОБАВИТЬ В КОРЗИНУ</button>
-		</form>
-	</div>
+<div class="slider-indx__add-to-cart">
+<?php echo apply_filters( 'woocommerce_loop_add_to_cart_link',
+   sprintf( '<a href="%s" rel="nofollow" data-product_id="%s" data-product_sku="%s" class="button %s product_type_%s"><button name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn-add-to-cart" style="width: 230px;float: left; margin-top: 25px" type="submit">ДОБАВИТЬ В КОРЗИНУ</button></a>',
+	   esc_url( $product->add_to_cart_url().'&url='.get_permalink( $product->get_id() ) ),
+	   esc_attr( $product->id ),
+	   esc_attr( $product->get_sku() ),
+	   $product->is_purchasable() ? 'add_to_cart_button' : '',
+	   esc_attr( $product->product_type ),
+	   esc_html( $product->add_to_cart_text() )
+   ),
+  $product );?>
+ </div>
 <?php endif; ?>
