@@ -10,6 +10,7 @@
             'parent'     => 0,
             'hide_empty' => false,
         ) );
+        $pages = get_pages();
     ?>
     <header>
         <div class="mobile-menu">
@@ -84,30 +85,14 @@
                     <div class="menu__points col-md-8">
                         <div class="row">
                             <ul>
+                                <?php
+                                    foreach($pages as $page){
+                                ?>
                                 <li class="point_1 col-md-2">
-                                    <a href="about_us.html">О нас</a>
+                                    <a href="<?php echo get_page_link( $page->ID ); ?>"><?php echo $page->post_title; ?></a>
                                     <div class="menu__underline"></div>
                                 </li>
-                                <li class="point_2 col-md-2">
-                                    <a href="<?php echo get_template_directory_uri() ?>/categories.php">Категории</a>
-                                    <div class="menu__underline"></div>
-                                </li>
-                                <li class="point_3 col-md-2">
-                                    <a href="collections.html">Коллекции</a>
-                                    <div class="menu__underline"></div>
-                                </li>
-                                <li class="point_4 col-md-2">
-                                    <a href="factories.html">Фабрики</a>
-                                    <div class="menu__underline"></div>
-                                </li>
-                                <li class="point_5 col-md-2">
-                                    <a href="delivery.html">Доставка</a>
-                                    <div class="menu__underline"></div>
-                                </li>
-                                <li class="point_6 col-md-2">
-                                    <a href="contacts.html">Контакты</a>
-                                    <div class="menu__underline"></div>
-                                </li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
