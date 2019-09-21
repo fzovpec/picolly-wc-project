@@ -7,7 +7,7 @@
     require('get_types.php');
     $category = get_queried_object();
     if(isset($_GET['fil'])){
-        header('Location: ');
+        header('Location: &url='.$_POST['categor'].'&type='.$_POST['type'][0].'&age='.$_POST['age'][0]);
     }
 ?>
 <section class="section-index content">
@@ -31,7 +31,7 @@
                     <div class="select-brown__head">ФИЛЬТРЫ</div>
                 </div>
             </div>
-            <form action="<?php echo esc_url(get_term_link( $category )).'&fil=true'.'&url='.$_POST['categor'].'&type='.$_POST['type'][0].'&age='.$_POST['age'][0];?>" method="post">
+            <form action="<?php echo esc_url(get_term_link( $category )).'&fil=true';?>" method="post">
                 <?php if( !empty($product_categories) ):?>
                 <div class="select-brown__container">
                     <div class="select-brown">
