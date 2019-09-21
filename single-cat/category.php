@@ -4,6 +4,8 @@
     $types = array();
     require('get_ages.php');
     require('get_types.php');
+    $category = get_queried_object();
+    $url = '';
 ?>
 <section class="section-index content">
     <div class="section-index__head section-factories__head">
@@ -27,35 +29,38 @@
                     <div class="select-brown__head">ФИЛЬТРЫ</div>
                 </div>
             </div>
-            <?php if( !empty($product_categories) ):?>
-            <div class="select-brown__container">
-                <div class="select-brown">
-                    <div class="select-brown__head">КАТЕГОРИЯ</div>
-                    <?php
-                        foreach ($product_categories as $key => $cat){?>
-                            <a href = "<?php echo esc_url(get_term_link( $cat )) ?>">
-                                <div class="select-brown__category"><?php echo $cat->name; ?></div>
-                            </a>
-                    <?php }?>
+            <form action="<?php echo esc_url(get_term_link( $category )).'&url='.$_POST['categor'].'&type='.$_POST['type'][0];?>" method="post">
+                <?php if( !empty($product_categories) ):?>
+                <div class="select-brown__container">
+                    <div class="select-brown">
+                        <div class="select-brown__head">КАТЕГОРИЯ</div>
+                        <?php
+                            foreach ($product_categories as $key => $cat){?>
+                                <input type="checkbox" name="categor" value="<?php echo esc_url(get_term_link( $cat )) ?>"> <?php echo $cat->name; ?></input><br>
+                        <?php }?>
+
+                    </div>
                 </div>
-            </div>
-        <?php endif; ?>
-            <div class="select-brown__container">
-                <div class="select-brown">
-                    <div class="select-brown__head">Тип товара</div>
-                    <?php foreach ($types as $key => $type){ ?>
-                        <a href="<?php echo esc_url(get_term_link( get_queried_object()->term_id )).'&type='. $type;?>"><div class="select-brown__category"><?php echo $type; ?></div></a>
-                    <?php } ?>
+            <?php endif; ?>
+                <div class="select-brown__container">
+                    <div class="select-brown">
+                        <div class="select-brown__head">Тип товара</div>
+                        <?php foreach ($types as $key => $type){ ?>
+                            <input type="checkbox" name="type[]" value="<?php echo $type?>"> <?php echo $type; ?></input><br>
+                        <?php } ?>
+                    </div>
                 </div>
-            </div>
-            <div class="select-brown__container">
-                <div class="select-brown">
-                    <div class="select-brown__head">Возраст</div>
-                    <?php foreach ($ages as $key => $age){ ?>
-                    <a href="<?php echo esc_url(get_term_link( get_queried_object()->term_id )).'&age='. $age;?>"><div class="select-brown__category"><?php echo $age; ?></div></a>
-                    <?php } ?>
+                <div class="select-brown__container">
+                    <div class="select-brown">
+                        <div class="select-brown__head">Возраст</div>
+                        <?php foreach ($ages as $key => $age){ ?>
+                            <input type="checkbox" name="age[]" value="<?php echo $age ?>"> <?php echo $age; ?></input><br>
+                        <?php } ?>
+                    </div>
                 </div>
-            </div>
+
+                <input type="submit" style="background:#ce2a6e; margin-top: 10px;margin-bottom: 50px;" class="sum-btn" value="Применить">
+            </form>
         </div>
         <div class="row col-lg-9 col-md-12">
             <?php

@@ -31,21 +31,11 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 	<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
 		<p class="stock out-of-stock"><?php echo esc_html( apply_filters( 'woocommerce_out_of_stock_message', __( 'This product is currently out of stock and unavailable.', 'woocommerce' ) ) ); ?></p>
 	<?php else : ?>
-		<table class="variations" cellspacing="0">
-			<tbody>
-				<?php foreach ( $attributes as $attribute_name => $options ) : ?>
-					<tr>
-						<td class="label"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?></label></td>
-						<td class="value">
-							<?php foreach ( $options as $option ) :?>
-								<input type="radio" value="<?php echo $option ?>" name="attribute_color">
-							<?php endforeach?>
-						</td>
-					</tr>
-				<?php endforeach; ?>
-			</tbody>
-		</table>
-
+			<?php foreach ( $attributes as $attribute_name => $options ) : ?>
+				<?php foreach ( $options as $option ) :?>
+					<input type="radio" value="<?php echo $option ?>" name="attribute_color">
+				<?php endforeach?>
+			<?php endforeach; ?>
 		<div class="single_variation_wrap">
 			<?php
 				/**
