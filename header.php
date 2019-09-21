@@ -64,11 +64,10 @@
                             endif;
                             ?>
                     		</select>
-                    		<button type="submit">
-                    			<div class="search__box">
-                    				<img src="<?php echo get_template_directory_uri() ?>/img/search_icon.png">
-                    			</div>
-                    		</button>
+                            <input type="submit" style="display: none" id="search__input" value="">
+                            <label for="search__input" style="margin-bottom: 0" class="search__box">
+                                <img src="<?php echo get_template_directory_uri() ?>/img/search_icon.png">
+                            </label>
                     		<input type="hidden" name="post_type" value="product" />
                             <input type="hidden" value="<?php echo get_cat_ID($_GET['category']);?>" name="cat" id="scat" />
                     	</form>
