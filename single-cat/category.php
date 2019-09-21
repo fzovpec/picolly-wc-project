@@ -2,10 +2,13 @@
     global $product;
     $ages = array();
     $types = array();
+    $category = get_queried_object();
     require('get_ages.php');
     require('get_types.php');
     $category = get_queried_object();
-    $url = '';
+    if(isset($_GET['fil'])){
+        header('Location: ');
+    }
 ?>
 <section class="section-index content">
     <div class="section-index__head section-factories__head">
@@ -15,7 +18,6 @@
 
     </div>
     <?php
-        $category = get_queried_object();
         $product_categories = get_terms( $taxonomy, array(
             'parent'     => $category->term_id,
             'hide_empty' => false,
@@ -29,7 +31,7 @@
                     <div class="select-brown__head">ФИЛЬТРЫ</div>
                 </div>
             </div>
-            <form action="<?php echo esc_url(get_term_link( $category )).'&url='.$_POST['categor'].'&type='.$_POST['type'][0];?>" method="post">
+            <form action="<?php echo esc_url(get_term_link( $category )).'&fil=true'.'&url='.$_POST['categor'].'&type='.$_POST['type'][0].'&age='.$_POST['age'][0];?>" method="post">
                 <?php if( !empty($product_categories) ):?>
                 <div class="select-brown__container">
                     <div class="select-brown">
@@ -73,12 +75,12 @@
 
                 while ( $loop->have_posts() ) : $loop->the_post();
                 $prdt = wc_get_product( get_the_ID() ) ;
-                if(isset($_GET['type'])){
+                if(isset($_GET['type']) && !empty($_GET['type'])){
                     if($prdt->get_attribute('type') != $_GET['type']){
                         continue;
                     }
                 }
-                if(isset($_GET['age'])){
+                if(isset($_GET['age']) && !empty($_GET['age'])){
                     if($prdt->get_attribute('age') != $_GET['age']){
                         continue;
                     }
