@@ -37,7 +37,10 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 	<?php else : ?>
 			<?php foreach ( $attributes as $attribute_name => $options ) : ?>
 				<?php foreach ( $options as $option ) :?>
-					<input type="radio" value="<?php echo $option ?>" name="attribute_color">
+					<label class="color_label" for="<?php echo $option ?>">
+						<div class="product__color" style="background: <?php echo $option ?>"></div>
+					</label>
+					<input type="radio" id="<?php echo $option ?>" style="display: none" value="<?php echo $option ?>" name="attribute_color">
 				<?php endforeach?>
 			<?php endforeach; ?>
 		<div class="single_variation_wrap">

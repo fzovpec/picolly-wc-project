@@ -169,8 +169,8 @@ $('.mobile-menu__close').click(function() {
 })
 
 $('.open-filters').click(function() {
-    $('.select-brown').slideToggle()
-    $('.open-filters').slideToggle()
+    $('.select-brown__container form').slideToggle()
+
 })
 var values = new Array()
 $('.select-brown__category').click(function() {
@@ -242,3 +242,8 @@ var galleryTop = new Swiper('.gallery-top', {
         }
     },
 });
+
+$('.color_label').click(function() {
+    $('.active').removeClass('active')
+    $(this).addClass('active')
+})
