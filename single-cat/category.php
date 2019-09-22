@@ -7,7 +7,7 @@
     require('get_types.php');
     $category = get_queried_object();
     if(isset($_GET['fil'])){
-        header('Location: &url='.$_POST['categor'].'&type='.$_POST['type'][0].'&age='.$_POST['age'][0]);
+        header('Location: '.esc_url(get_term_link( $category )).'&url='.$_POST['categor'].'&type='.$_POST['type'][0].'&age='.$_POST['age'][0]);
     }
 ?>
 <section class="section-index content">
@@ -68,7 +68,6 @@
             <?php
                 $args = array(
                     'post_type'      => 'product',
-                    'posts_per_page' => 10,
                     'product_cat'    => $_GET['product_cat']
                 );
                 $loop = new WP_Query( $args );
@@ -88,7 +87,7 @@
             ?>
                 <div class="slider-indx__slide col-lg-4 col-md-6">
                     <img src="<?php echo get_the_post_thumbnail_url(); ?>" class="slider-indx__main-img">
-                    <div class="slider-indx__title"><?php the_title(); ?></div>
+                    <a href="<?php echo the_permalink() ?>"><div class="slider-indx__title"><?php the_title(); ?></div></a>
                     <div class="slider-indx__underline"></div>
                     <div class="slider-indx__price-list">
                         <div class="slider-indx__info">
@@ -102,7 +101,18 @@
                             </div>
                         </div>
                         <div class="slider-indx__add-to-cart">
-                            <div class="btn-add-to-cart">В КОРЗИНУ</div>
+                            <?php if ( $prdt->is_in_stock() ) : ?>
+                                <?php echo apply_filters( 'woocommerce_loop_add_to_cart_link',
+                                   sprintf( '<a href="%s" rel="nofollow" data-product_id="%s" data-product_sku="%s" class="button %s product_type_%s"><div class="btn-add-to-cart">В КОРЗИНУ</div></a>',
+                                	   esc_url( $prdt->add_to_cart_url().'&url='.esc_url(get_term_link( $category )) ),
+                                	   esc_attr( $prdt->id ),
+                                	   esc_attr( $prdt->get_sku() ),
+                                	   $prdt->is_purchasable() ? 'add_to_cart_button' : '',
+                                	   esc_attr( $prdt->product_type ),
+                                	   esc_html( $prdt->add_to_cart_text() )
+                                   ),
+                                  $prdt );?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

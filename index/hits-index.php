@@ -16,6 +16,7 @@
                     $args = array(
                         'post_type' => 'product',
                         'meta_key' => 'total_sales',
+                        'posts_per_page' => 10,
                         'orderby' => 'meta_value_num',
                     );
                     $loop = new WP_Query( $args );
