@@ -24,9 +24,9 @@ if ( ! $product->is_purchasable() ) {
 	return;
 }
 
-echo wc_get_stock_html( $product ); // WPCS: XSS ok.
-
-if ( $product->is_in_stock() ) : ?>
+echo wc_get_stock_html( $product ); // WPCS: XSS ok.?>
+<div class="product__price">ЦЕНА: <?php echo $product->get_price_html(); ?></div>
+<?php if ( $product->is_in_stock() ) : ?>
 <div class="slider-indx__add-to-cart">
 <?php echo apply_filters( 'woocommerce_loop_add_to_cart_link',
    sprintf( '<a href="%s" rel="nofollow" data-product_id="%s" data-product_sku="%s" class="button %s product_type_%s"><button name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn-add-to-cart" style="width: 230px;float: left; margin-top: 25px" type="submit">ДОБАВИТЬ В КОРЗИНУ</button></a>',

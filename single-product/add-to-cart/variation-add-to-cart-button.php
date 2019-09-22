@@ -11,6 +11,8 @@ defined( 'ABSPATH' ) || exit;
 
 global $product;
 ?>
+<div class="product__line"></div>
+<div class="product__price">ЦЕНА: <?php echo $product->get_price_html(); ?></div>
 <div class="woocommerce-variation-add-to-cart variations_button">
 	<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 

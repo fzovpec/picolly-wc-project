@@ -2,6 +2,9 @@
     if(isset($_GET['url'])){
         header('Location: '.$_GET['url'].'');
     }
+    if(isset($_POST['add-to-cart'])){
+        header('Location: '.get_permalink( $_POST['product_id'] ));
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
