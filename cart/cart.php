@@ -87,12 +87,10 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 								?>
 
 								<?php echo $cart_item['quantity']; ?>
-								<form method="post">
-									<button type="submit" name = 'decrease'><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAxMGgyNHY0aC0yNHoiLz48L3N2Zz4="></button>
-								</form>
+									<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAxMGgyNHY0aC0yNHoiLz48L3N2Zz4=">
 								<?php
 									if(isset($_POST['decrease'])){
-										WC()->cart->set_quantity($cart_item['variation_id'], $cart_item['quantity'] - 1, true);
+										WC()->cart->set_quantity($_product->id, $cart_item['quantity'] - 1);
 									}
 								?>
 							</div>
@@ -100,7 +98,7 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 						<div class="commodities-basket__price">
 							<span class="commodities-basket__price-text">ЦЕНА: <?php
 								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
-							?> Р.</span>
+							?></span>
 						</div>
 					</div>
 				</div>
@@ -108,6 +106,7 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 		<?php }?>
 		</div>
 	</div>
+	<div class="sum-btn">СУММА: <?php wc_cart_totals_subtotal_html(); ?></div>
 	<?php
 		/**
 		 * Cart collaterals hook.
