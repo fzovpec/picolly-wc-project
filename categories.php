@@ -3,10 +3,26 @@
 Template Name: Категории
 */
 ?>
-<?php get_header();
-if(isset($_GET['fil'])){
-    header('Location: http://localhost:8000/?page_id=410');
+<?php
+$page = get_queried_object();
+$cat_post = $_POST['factory'];
+$cat_str = '';
+foreach ($cat_post as $cat_post) {
+    $cat_str .= $cat_post . '_';
 }
+$cat_get = $_GET['id_cat'];
+$cat_pp = explode('_', $cat_get);
+$col_post = $_POST['collection'];
+$col_str = '';
+foreach ($col_post as $col_post) {
+    $col_str .= $col_post . '_';
+}
+$col_get = $_GET['id_col'];
+$col_pp = explode('_', $col_get);
+if(isset($_GET['fil'])){
+    header('Location: '.get_page_link( $page->ID ).'&id_cat='.$cat_str.'&id_col='.$col_str);
+}
+get_header();
 ?>
 <section class="section-index content">
     <div class="section-index__head section-factories__head">
@@ -22,7 +38,7 @@ if(isset($_GET['fil'])){
                     <div class="select-brown__head">ФИЛЬТРЫ</div>
                 </div>
 
-                <form action="http://localhost:8000/?page_id=410&fil=true">
+                <form action="<?php echo get_page_link( $page->ID ).'&fil=true';?>" method="post">
                     <div class="select-brown__container">
                         <div class="select-brown">
                             <div class="select-brown__head">ФАБРИКА</div>
@@ -35,7 +51,7 @@ if(isset($_GET['fil'])){
                             if( !empty($parent_cat) ):
                                 foreach ($parent_cat as $key => $category){
                             ?>
-                            <input type="checkbox" name="factory[]" value=""> <?php echo $category->name;?></input><br>
+                            <input type="checkbox" name="factory[]" value="<?php echo $category->term_id?>"> <?php echo $category->name;?></input><br>
                             <?php }endif;?>
                         </div>
                     </div>
@@ -57,7 +73,7 @@ if(isset($_GET['fil'])){
                                     if( !empty($product_categories) ):
                                         foreach ($product_categories as $key => $category){
                                     ?>
-                            <input type="checkbox" name="factory[]" value=""> <?php echo $category->name;?></input><br>
+                            <input type="checkbox" name="collection[]" value="<?php echo $category->term_id?>"> <?php echo $category->name;?></input><br>
                         <?php }endif;}endif;?>
 
                         </div>
@@ -77,12 +93,22 @@ if(isset($_GET['fil'])){
             ) );
             if( !empty($parent_cat_ids) ):
                 foreach ($parent_cat_ids as $key => $parent){
+                    if(isset($_GET['id_cat']) && !empty($_GET['id_cat'])){
+                        if(!in_array($parent->term_id, $cat_pp)){
+                            continue;
+                        }
+                    }
                     $parent_cat_ids = get_terms( $taxonomy, array(
                         'parent'     => $parent->term_id,
                         'hide_empty' => false,
                     ) );
                     if( !empty($parent_cat_ids) ):
                         foreach ($parent_cat_ids as $key => $parent){
+                            if(isset($_GET['id_col']) && !empty($_GET['id_col'])){
+                                if(!in_array($parent->term_id, $col_pp)){
+                                    continue;
+                                }
+                            }
                             $taxonomy = 'product_cat';
                             $product_categories = get_terms( $taxonomy, array(
                                 'parent'     => $parent->term_id,
