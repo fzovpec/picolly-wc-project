@@ -13,4 +13,21 @@ function inline_php($content){
     return $content;
 }
 add_filter('the_content', 'inline_php', 0);
+function params_for_custom($parent){
+    $taxonomy = 'product_cat';
+    return $parent_cat_ids = get_terms( $taxonomy, array(
+        'parent'     => $parent,
+        'hide_empty' => false,
+    ) );
+}
+function echo_title_factory(){
+    echo '
+    <div class="section-index__main-img col-md-6 main-img section-factories__block">
+        <div class="main-img__upperblock">
+            <span class="main-img__uppertext">'.$category->name.'</span>
+            <a href = "'.esc_url(get_term_link( $category )).'"><div class="big-btn">КАТАЛОГ</div></a>
+        </div>
+    <img src="'.$shop_catalog_img[0].'" class="main-img__big">
+    </div>';
+}
 ?>
