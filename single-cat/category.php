@@ -6,8 +6,22 @@
     require('get_ages.php');
     require('get_types.php');
     $category = get_queried_object();
+    $ages_post = $_POST['age'];
+    $ages_str = '';
+    foreach ($ages_post as $age_post) {
+        $ages_str .= $age_post . '_';
+    }
+    $age_get = $_GET['age'];
+    $age_pp = explode('_', $age_get);
+    $type_post = $_POST['type'];
+    $type_str = '';
+    foreach ($type_post as $type_post) {
+        $type_str .= $type_post . '_';
+    }
+    $type_get = $_GET['type'];
+    $type_pp = explode('_', $type_get);
     if(isset($_GET['fil'])){
-        header('Location: '.esc_url(get_term_link( $category )).'&url='.$_POST['categor'].'&type='.$_POST['type'][0].'&age='.$_POST['age'][0]);
+        header('Location: '.esc_url(get_term_link( $category )).'&url='.$_POST['categor'].'&type='.$type_str.'&age='.$ages_str);
     }
 ?>
 <section class="section-index content">
@@ -75,12 +89,12 @@
                 while ( $loop->have_posts() ) : $loop->the_post();
                 $prdt = wc_get_product( get_the_ID() ) ;
                 if(isset($_GET['type']) && !empty($_GET['type'])){
-                    if($prdt->get_attribute('type') != $_GET['type']){
+                    if(!in_array($prdt->get_attribute('type'), $type_pp)){
                         continue;
                     }
                 }
                 if(isset($_GET['age']) && !empty($_GET['age'])){
-                    if($prdt->get_attribute('age') != $_GET['age']){
+                    if(!in_array($prdt->get_attribute('age'), $age_pp)){
                         continue;
                     }
                 }

@@ -28,17 +28,23 @@
                 <?php
                 if( !empty($parent_cat_ids) ):
                     foreach ($parent_cat_ids as $key => $parent){
-                        $taxonomy = 'product_cat';
-                        $product_categories = get_terms( $taxonomy, array(
+                        $parent_cat_ids = get_terms( $taxonomy, array(
                             'parent'     => $parent->term_id,
                             'hide_empty' => false,
                         ) );
-                if( !empty($product_categories) ):
-                    foreach ($product_categories as $key => $category){
-                        $product_id = $category->term_id;
-                        $cat_thumb_id = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
-                        $shop_catalog_img = wp_get_attachment_image_src( $cat_thumb_id, 'shop_catalog' );
-                        $term_link = get_term_link( $category, 'product_cat' );
+                        if( !empty($parent_cat_ids) ):
+                            foreach ($parent_cat_ids as $key => $parent){
+                                $taxonomy = 'product_cat';
+                                $product_categories = get_terms( $taxonomy, array(
+                                    'parent'     => $parent->term_id,
+                                    'hide_empty' => false,
+                                ) );
+                                if( !empty($product_categories) ):
+                                    foreach ($product_categories as $key => $category){
+                                        $product_id = $category->term_id;
+                                        $cat_thumb_id = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
+                                        $shop_catalog_img = wp_get_attachment_image_src( $cat_thumb_id, 'shop_catalog' );
+                                        $term_link = get_term_link( $category, 'product_cat' );
                 ?>
                     <div class="slider-indx__slide  swiper-slide">
                         <a href = "<?php echo esc_url(get_term_link( $category )) ?>">
@@ -47,7 +53,7 @@
                             <div class="slider-indx__underline"></div>
                         </a>
                     </div>
-                    <?php }
+                <?php }endif;}
                 endif;
             }
         endif;
