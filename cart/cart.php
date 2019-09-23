@@ -73,7 +73,6 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 						<div class="commodities-basket__quantity">
 							<div class="commodities-basket__quantity-text">
 								<?php
-
 			                    echo apply_filters( 'woocommerce_loop_add_to_cart_link',
 			                        sprintf( '<a href="%s" rel="nofollow" data-product_id="%s" data-product_sku="%s" class="button %s product_type_%s">+</a>',
 			                            esc_url( $_product->add_to_cart_url()),
@@ -87,12 +86,7 @@ do_action( 'woocommerce_before_cart_table' ); ?>
 								?>
 
 								<?php echo $cart_item['quantity']; ?>
-									<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAxMGgyNHY0aC0yNHoiLz48L3N2Zz4=">
-								<?php
-									if(isset($_POST['decrease'])){
-										WC()->cart->set_quantity($_product->id, $cart_item['quantity'] - 1);
-									}
-								?>
+								<a href=""><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAxMGgyNHY0aC0yNHoiLz48L3N2Zz4="></a>
 							</div>
 						</div>
 						<div class="commodities-basket__price">
