@@ -26,5 +26,6 @@ get_header( 'shop' );
  * @hooked woocommerce_breadcrumb - 20
  * @hooked WC_Structured_Data::generate_website_data() - 30
  */
-
+$category = get_queried_object();
+require_once('single-cat/category.php');
 ?>

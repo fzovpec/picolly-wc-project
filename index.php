@@ -1,10 +1,8 @@
 <?php
     get_header();
     require('index/first-screen.php');
-    require('index/big-cats.php');
     require('index/categories.php');
+    require('index/cats.php');
     require('index/new-index.php');
-    require('index/hits-index.php');
-    require('index/factories.php');
     get_footer();
 ?>

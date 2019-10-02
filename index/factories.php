@@ -1,3 +1,4 @@
+<!--
 <section class="section-index content">
     <div class="section-index__head">
         <div class="section-index__title-block">
@@ -34,4 +35,4 @@
         </div>
         <span><a href="">Посмотреть все</a></span>
     </div>
-</section>
+</section>--> 

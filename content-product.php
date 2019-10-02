@@ -21,12 +21,4 @@ global $product;
 
 // Ensure visibility.
 $category = get_queried_object();
-if(isset($_GET['all'])){
-	require_once('single-cat/category.php');
-}
-elseif((int)$category->parent == 0){
-	require_once('single-cat/factory.php');
-}
-else{
-	require_once('single-cat/category.php');
-}
+require_once('single-cat/category.php');
