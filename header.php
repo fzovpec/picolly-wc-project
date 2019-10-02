@@ -1,8 +1,8 @@
 <?php
+    if(isset($_GET['am'])){
         WC()->cart->add_to_cart( $_GET['am'] );
-    if(isset($_GET['url'])){
-        header('Location: '.$_GET['url'].'&am='.$_GET['am']);
     }
+    
     if(isset($_POST['add-to-cart'])){
         header('Location: '.get_permalink( $_POST['product_id'] ));
 	}

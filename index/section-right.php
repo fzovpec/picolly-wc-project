@@ -47,18 +47,7 @@
                             </div>
                         </div>
                         <div class="slider-indx__add-to-cart">
-                            <?php if ( $prdct->is_in_stock() ) : ?>
-                                <?php echo apply_filters( 'woocommerce_loop_add_to_cart_link',
-                                   sprintf( '<a href="%s" rel="nofollow" data-product_id="%s" data-product_sku="%s" class="button %s product_type_%s"><button name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn-add-to-cart" style="float: left;" type="submit">В КОРЗИНУ</button></a>',
-                                       esc_url( $prdct->add_to_cart_url().'&am='.$prdct->id.'&url='.home_url( '/' ) ),
-                                       esc_attr( $prdct->id ),
-                                       esc_attr( $prdct->get_sku() ),
-                                       $prdct->is_purchasable() ? 'add_to_cart_button' : '',
-                                       esc_attr( $prdct->product_type ),
-                                       esc_html( $prdct->add_to_cart_text() )
-                                   ),
-                                  $prdct );?>
-                            <?php endif; ?>
+                            <a href="<?php echo home_url( '/' ). '?am='.$prdct->id.'&url='. home_url( '/' ) ?>" rel="nofollow" data-product_id="%s" data-product_sku="%s" class="button %s product_type_%s"><button name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn-add-to-cart" style="float: left;" type="submit">В КОРЗИНУ</button></a>
                         </div>
                     </div>
                 </div>
