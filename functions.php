@@ -13,5 +13,15 @@ function inline_php($content){
     return $content;
 }
 add_filter('the_content', 'inline_php', 0);
-
+function force_non_logged_user_wc_session()
+{
+    if (is_user_logged_in() || is_admin())
+        return;
+    if (isset(WC()->session)) {
+        if (!WC()->session->has_session()) {
+            WC()->session->set_customer_session_cookie(true);
+       }
+    }
+}
+add_action('woocommerce_init', 'force_non_logged_user_wc_session');
 ?>

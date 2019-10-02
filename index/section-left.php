@@ -21,6 +21,7 @@
                     $loop = new WP_Query( $args );
                     if ( $loop->have_posts() ):
                         while ( $loop->have_posts() ) : $loop->the_post();
+                            $prdct = wc_get_product( get_the_ID() ) ;
                 ?>
                 <div class="slider-indx__slide col-md-12 col-lg-6 swiper-slide">
                     <a href="<?php echo the_permalink(); ?>"><img src="<?php echo get_the_post_thumbnail_url(); ?>" class="slider-indx__main-img"></a>
@@ -38,7 +39,18 @@
                             </div>
                         </div>
                         <div class="slider-indx__add-to-cart">
-                            <a href="<?php echo the_permalink(); ?>"><div class="btn-add-to-cart">В КОРЗИНУ</div></a>
+                            <?php if ( $prdct->is_in_stock() ) : ?>
+                                <?php echo apply_filters( 'woocommerce_loop_add_to_cart_link',
+                                   sprintf( '<a href="%s" rel="nofollow" data-product_id="%s" data-product_sku="%s" class="button %s product_type_%s"><button name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="btn-add-to-cart" style="float: left;" type="submit">В КОРЗИНУ</button></a>',
+                                       esc_url( $prdct->add_to_cart_url().'&url='.home_url( '/' ).'&am='.$prdct->id ),
+                                       esc_attr( $prdct->id ),
+                                       esc_attr( $prdct->get_sku() ),
+                                       $prdct->is_purchasable() ? 'add_to_cart_button' : '',
+                                       esc_attr( $prdct->product_type ),
+                                       esc_html( $prdct->add_to_cart_text() )
+                                   ),
+                                  $prdct );?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

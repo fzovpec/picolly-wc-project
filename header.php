@@ -1,15 +1,7 @@
 <?php
-    if (!is_user_logged_in() || !is_admin()){
-        if (isset(WC()->session)) {
-            if (WC()->session->has_session()) {
-                if(isset($_GET['cart-mob'])){
-                    WC()->cart->add_to_cart( $_GET['cart-mob'] );
-                }
-            }
-        }
-    }
+        WC()->cart->add_to_cart( $_GET['am'] );
     if(isset($_GET['url'])){
-        header('Location: '.$_GET['url'].'');
+        header('Location: '.$_GET['url'].'&am='.$_GET['am']);
     }
     if(isset($_POST['add-to-cart'])){
         header('Location: '.get_permalink( $_POST['product_id'] ));
